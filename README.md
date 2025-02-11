@@ -41,7 +41,7 @@ In this case, the hash values ​​for all strings between the number **"zero"*
 **Chi-Square Test 𝛘<sup>2</sup>** = 231.72811199999995   
 **Average bytes value = 127.48867140625 (127.5 random)   
 **Entropy** = 7.999994776507291 bits (8 random)  
-**Estimated Compressed Length = 32000000  
+**Estimated Compressed Length** = 32000000  
 **Monte Carlo for Pi 2D** = 3.1423254463953403 (error = 0.023325519453001927%)  
 **Monte Carlo for Pi 3D** = 3.142381990997186 (error = 0.025125390030782416%)  
 **Average of Contiguous Byte Pairs** = 32764.588664112147 (32767.5 random) (error 0.00888482761227758%)  
