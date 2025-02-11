@@ -29,22 +29,24 @@ For hashing functions with length greater than or equal to 128 bits, it is very 
 
 In this case, the hash values ​​for all strings between the number **"zero"** and the number **"nine million nine hundred ninety-nine thousand nine hundred ninety-nine"** were concatenated for a total of 10,000,000 hashes. VisualRT was used to analyze the output and the result passed all randomness tests, confirming the quality of the mzHash family algorithm.
 
-![Alt Text](https://raw.githubusercontent.com/matteo65/mzHash128/main/Resource/mzhash128output.png)
+![Alt Text](https://raw.githubusercontent.com/matteo65/mzHash192/main/Resource/mzhash192output.png)
 
-**Length** = 160000000  
-**Average byte frequency μ** = 625000.0  
-**Minimum byte frequency** = 622747  
-**Maximum byte frequency** = 627006  
-**Variance σ<sup>2</sup>** = 582152.3359375  
-**Standard Deviation σ** = 762.989079828473  
-**Coefficient of Variation <sup>σ</sup>/<sub>μ</sub>** = 0.12207825277255567%  
-**Chi-Square 𝛘<sup>2</sup>** = 238.44959679999994  
-**Average bytes value** = 127.4960377125 (127.5 random)  
-**Entropy** = 7.999998924887414 bits (8 random)  
-**Monte Carlo for Pi 2D** = 3.1413165785329147 (error = 0.00878774199331576%)  
-**Monte Carlo for Pi 3D** = 3.1415918874446453 (error = 0.00002438715747863%)  
-**Average of Contiguous Byte Pairs** = 32766.48172108426 (32767.5 random) (error 0.0031075880544462224%)  
-**4 Bytes Collisions** = 185738 (expected collisions = 185687.61296987534)  
+**Length** = 32000000
+**Average byte frequency μ**= 125000.0
+**Minimum byte frequency** = 124032
+**Maximum byte frequency** = 125905
+**Variance σ<sup>2</sup>** = 113148.4921875
+**Standard Deviation σ** = 336.3755225748449
+**Coefficient of Variation <sup>σ</sup>/<sub>μ</sub>** = 0.26910041805987595
+**Chi-Square Test 𝛘<sup>2</sup>** = 231.72811199999995
+**Average bytes value = 127.48867140625 (127.5 random)
+**Entropy** = 7.999994776507291 bits (8 random)
+**Estimated Compressed Length = 32000000
+**Monte Carlo for Pi 2D** = 3.1423254463953403 (error = 0.023325519453001927%)
+**Monte Carlo for Pi 3D** = 3.142381990997186 (error = 0.025125390030782416%)
+**Average of Contiguous Byte Pairs** = 32764.588664112147 (32767.5 random) (error 0.00888482761227758%)
+**4 Bytes Collisions** = 7413 (expected collisions = 7445.955891609192)
+
 
 ## Applications
 mzHash192 is well-suited for a variety of non-cryptographic use cases, including:
