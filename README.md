@@ -3,7 +3,7 @@ We are excited to present mzHash192 , the latest addition to the mzHash family o
 
 ```java
 public static void mzHash192(byte[] data, int start, int length, ThreeLongs out) {
-  long hash1 = 0;
+	long hash1 = 0;
 	long hash2 = 0x7F573AFD9B2368FDL;
 	long hash3 = 0xEBCDBA32A30D97ACL;
 		
