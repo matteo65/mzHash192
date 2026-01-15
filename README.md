@@ -1,21 +1,25 @@
 # mzHash192: A Fast and Efficient Non-Cryptographic Hash Function
-We are excited to present mzHash192 , the latest addition to the mzHash family of non-cryptographic hash functions. Building upon the success of its predecessors, mzHash32 and mzHash64, mzHash128, mzHash192 extends the family with a 192-bit output while maintaining the same principles of simplicity, speed, and high performance in minimizing collisions.
+We are excited to present mzHash192, the latest addition to the mzHash family of non-cryptographic hash functions. Building upon the success of its predecessors, mzHash32 and mzHash64, mzHash128, mzHash192 extends the family with a 192-bit output while maintaining the same principles of simplicity, speed, and high performance in minimizing collisions.
 
-```java
-public static void mzHash192(byte[] data, int start, int length, ThreeLongs out) {
-	long hash1 = 0;
-	long hash2 = 0x7F573AFD9B2368FDL;
-	long hash3 = 0xEBCDBA32A30D97ACL;
-		
-	for(int i = 0; i < length; i++) {
-		long x = i + data[start + i];
-		hash1 = 0x91C1BACD9E6787F3L * x ^ (hash3 << 2) ^ (hash3 >>> 2);
-		hash2 = 0x447239684A147E94L * x ^ (hash2 << 2) ^ (hash2 >>> 2);
-		hash3 = 0xFAADD3787DABBC1EL * x ^ (hash1 << 2) ^ (hash1 >>> 2);
+```C
+void mzhash192(const void* data, size_t length, uint64_t* output)
+{
+	const int8_t *bytes = (const int8_t*)data;
+	uint64_t hash0 = 0xB04C2438F4F7D8D1uLL;
+	uint64_t hash1 = 0xA3B8FD0DF0836C0DuLL;
+	uint64_t hash2 = 0x9E9BDFDAEFC3A606uLL;
+        
+	while(length--) {
+		uint64_t h0 = 0xD76F648260B0F9FDuLL * (*bytes ^ (hash0 << 8) ^ (hash0 >> 8));
+		uint64_t h1 = 0xD1DA2131A0C25299uLL * (*bytes ^ (hash1 << 8) ^ (hash1 >> 8));
+		hash0 = 0x188EF276E8755C0FuLL * (*bytes++ ^ (hash2 << 8) ^ (hash2 >> 8));
+		hash1 = h0;
+		hash2 = h1;
 	}
-	out.val1 = hash1;
-	out.val2 = hash2;
-	out.val3 = hash3;
+	
+	output[0] = hash0;
+	output[1] = hash1;
+	output[2] = hash2;
 }
 ```
 ## Key Features of mzHash192
@@ -27,24 +31,24 @@ public static void mzHash192(byte[] data, int start, int length, ThreeLongs out)
 ## Hash Value Distribution Analysis
 For hashing functions with length greater than or equal to 128 bits, it is very difficult, if not impossible, to count collisions, therefore, in order to verify the quality of the result, statistical analysis on hashing samples is used. A quality hashing function must produce an output with a uniform distribution and indistinguishable from a random sequence of bytes.
 
-In this case, the hash values ​​for all strings between the number **"zero"** and the number **"nine million nine hundred ninety-nine thousand nine hundred ninety-nine"** were concatenated for a total of 10,000,000 hashes. VisualRT was used to analyze the output and the result passed all randomness tests, confirming the quality of the mzHash family algorithm.
+In this case, the hash values ​​for all strings between the number **"zero"** and the number **"nine hundred ninety-nine thousand nine hundred ninety-nine"** were concatenated for a total of 1,000,000 hashes. VisualRT was used to analyze the output and the result passed all randomness tests, confirming the quality of the mzHash family algorithm.
 
 ![Alt Text](https://raw.githubusercontent.com/matteo65/mzHash192/main/Resource/mzhash192output.png)
 
-**Length** = 32000000   
-**Average byte frequency μ**= 125000.0   
-**Minimum byte frequency** = 124032   
-**Maximum byte frequency** = 125905   
-**Variance σ<sup>2</sup>** = 113148.4921875   
-**Standard Deviation σ** = 336.3755225748449   
-**Coefficient of Variation <sup>σ</sup>/<sub>μ</sub>** = 0.26910041805987595   
-**Chi-Square Test 𝛘<sup>2</sup>** = 231.72811199999995   
-**Average bytes value** = 127.48867140625 (127.5 random)   
-**Entropy** = 7.999994776507291 bits (8 random)  
-**Monte Carlo for π 2D** = 3.1423254463953403 (error = 0.023325519453001927%)  
-**Monte Carlo for π 3D** = 3.142381990997186 (error = 0.025125390030782416%)  
-**Average of Contiguous Byte Pairs** = 32764.588664112147 (32767.5 random) (error 0.00888482761227758%)  
-**4 Bytes Collisions** = 7413 (expected collisions = 7445.955891609192)  
+**Length** = 24000000   
+**Average byte frequency μ**= 93750.0   
+**Minimum byte frequency** = 93017   
+**Maximum byte frequency** = 94438   
+**Variance σ<sup>2</sup>** = 86445.195   
+**Standard Deviation σ** = 294.016   
+**Coefficient of Variation <sup>σ</sup>/<sub>μ</sub>** = 0.314%   
+**Chi-Square Test 𝛘<sup>2</sup>** = 236.053   
+**Average bytes value** = 127.501 (127.5 random)   
+**Entropy** = 7.999993 bits (8 random)  
+**Monte Carlo for π 2D** = 3.141132 (error = 0.015%)  
+**Monte Carlo for π 3D** = 3.139822 (error = 0.056%)  
+**Average of Contiguous Byte Pairs** = 32767.835 (32767.5 random) (error 0.001%)  
+**4 Bytes Collisions** = 4174 (expected collisions = 4189.0)  
 
 
 ## Applications
