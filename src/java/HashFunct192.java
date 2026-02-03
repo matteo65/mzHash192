@@ -5,7 +5,7 @@
  * 
  * Author: Matteo Zapparoli
  * Date: 2026-01
- * Reelease: 2
+ * Release: 2
  *
  * SPDX-FileCopyrightText: 2026 Matteo Zapparoli <zapparoli.matteo@gmail.com>
  * SPDX-License-Identifier: Apache-2.0
@@ -80,3 +80,4 @@ public class HashFunct192 {
 	}
 
 }
+
